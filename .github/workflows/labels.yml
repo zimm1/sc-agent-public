@@ -1,0 +1,27 @@
+name: Sync labels
+
+# Keeps the repo's labels in sync with .github/labels.yml. Runs on push when
+# that file changes, or on demand. Uses the well-maintained EndBug action;
+# requires GITHUB_TOKEN with repo write (default in Actions).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/labels.yml'
+      - '.github/workflows/labels.yml'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: EndBug/label-sync@v2
+        with:
+          config-file: .github/labels.yml
+          delete-other-labels: true
+          token: ${{ secrets.GITHUB_TOKEN }}

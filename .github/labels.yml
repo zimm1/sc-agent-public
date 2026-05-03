@@ -1,0 +1,71 @@
+# Canonical label set for sc-agent-public.
+#
+# Apply via the github-label-sync action (see .github/workflows/labels.yml)
+# OR manually in Settings → Labels. Sync action keeps the repo in sync with
+# this file as the source of truth.
+
+# --- Type ----------------------------------------------------------------
+- name: bug
+  color: "d73a4a"
+  description: Something is broken
+- name: enhancement
+  color: "a2eeef"
+  description: New feature or improvement to an existing one
+- name: documentation
+  color: "0075ca"
+  description: Docs typo, broken link, unclear explanation, missing topic
+- name: question
+  color: "d876e3"
+  description: Use Discussions for questions; this label flags issues opened by mistake
+
+# --- Data area ------------------------------------------------------------
+- name: "data:universe"
+  color: "1d76db"
+  description: Universe data — POI corrections, container fixes, locale strings
+- name: "data:models"
+  color: "1d76db"
+  description: OCR model artifacts — manifest issues, signature problems, fetch failures
+- name: "data:phase"
+  color: "1d76db"
+  description: Rotation phase data — community contributions, calibration issues
+
+# --- Workflow state -------------------------------------------------------
+- name: needs-triage
+  color: "fbca04"
+  description: New issue, not yet looked at by the maintainer
+- name: needs-info
+  color: "fbca04"
+  description: Waiting for the reporter to provide more detail
+- name: needs-decision
+  color: "fbca04"
+  description: Blocked on a maintainer architectural call
+- name: blocked
+  color: "b60205"
+  description: Waiting on something external (CIG patch, GH feature, third-party tool)
+
+# --- Resolution -----------------------------------------------------------
+- name: duplicate
+  color: "cfd3d7"
+  description: Already filed elsewhere
+- name: wontfix
+  color: "ffffff"
+  description: Out of scope or by design — see comment for rationale
+- name: invalid
+  color: "e4e669"
+  description: Cannot reproduce or premise was wrong
+
+# --- Contributor onboarding ----------------------------------------------
+- name: good-first-issue
+  color: "7057ff"
+  description: A bite-sized issue suitable for a first-time contributor
+- name: help-wanted
+  color: "008672"
+  description: Maintainer is open to a community contribution here
+
+# --- Privacy + safety -----------------------------------------------------
+- name: privacy
+  color: "5319e7"
+  description: Touches PII, anonymization, or data the app sends
+- name: security
+  color: "5319e7"
+  description: Signature, key rotation, manifest tampering — handle carefully

@@ -1,0 +1,54 @@
+name: Update README stats
+
+# Auto-regenerates the AUTO:* sections in README.md whenever the content
+# folders change (universe, models, phase) or a new release is published.
+# Commits the result back to main with a [skip ci] tag to avoid loops.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'universe/**'
+      - 'phase/**'
+      - 'models/**'
+      - 'scripts/update-readme-stats.ps1'
+      - '.github/workflows/update-stats.yml'
+  release:
+    types: [published, edited, deleted]
+  workflow_dispatch:    # manual trigger
+
+permissions:
+  contents: write       # commit README.md updates
+
+concurrency:
+  group: update-readme-stats
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up PowerShell
+        run: pwsh --version
+
+      - name: Regenerate README stats
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pwsh scripts/update-readme-stats.ps1 -ReadmePath README.md
+
+      - name: Commit if README changed
+        run: |
+          if [ -n "$(git status --porcelain README.md)" ]; then
+            git config user.name "sc-agent stats bot"
+            git config user.email "noreply@github.com"
+            git add README.md
+            git commit -m "Update README stats [skip ci]"
+            git push
+          else
+            echo "No README changes — skipping commit."
+          fi

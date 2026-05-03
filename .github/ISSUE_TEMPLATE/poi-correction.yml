@@ -1,0 +1,71 @@
+name: 🗺️ Universe data correction
+description: Wrong POI name, wrong coordinates, missing landing zone, etc.
+title: "[universe] "
+labels: ["data:universe", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for spotting this. The dataset is sourced from publicly-released CIG game files — sometimes the build pipeline misses something or the locale strings haven't been added yet. Help me catch it.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What's wrong?
+      options:
+        - Wrong POI name
+        - Wrong coordinates
+        - POI is missing entirely
+        - Wrong category (e.g., should be "outpost" not "station")
+        - Wrong parent body / container
+        - Other (explain below)
+    validations:
+      required: true
+
+  - type: input
+    id: system
+    attributes:
+      label: System
+      description: e.g. Stanton, Pyro, Nyx, Ellis
+      placeholder: "Stanton"
+    validations:
+      required: true
+
+  - type: input
+    id: body
+    attributes:
+      label: Body / container (if applicable)
+      description: e.g. Hurston, ArcCorp 141, microTech
+      placeholder: "Hurston"
+
+  - type: input
+    id: poi-name
+    attributes:
+      label: POI name (as it appears in sc-agent or the dataset)
+      placeholder: "Lorville"
+
+  - type: textarea
+    id: what-it-says
+    attributes:
+      label: What sc-agent / the dataset currently shows
+      placeholder: |
+        Name: ...
+        Coordinates: ...
+        Category: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-it-should-be
+    attributes:
+      label: What it should be, and how you know
+      description: |
+        For coordinates, the most reliable evidence is sc-agent's own debug output (your `Pos:` line of `r_DisplayInfo 3` while standing at the POI). For names, an in-game screenshot of the location label is gold.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence (optional but appreciated)
+      description: Screenshot, in-game URL, dataset version, anything that helps verify.

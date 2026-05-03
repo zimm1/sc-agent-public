@@ -1,0 +1,10 @@
+# Issue picker configuration. Forces users to pick a template instead of
+# opening blank issues. The "Discussions" link siphons off non-bug content.
+blank_issues_enabled: false
+contact_links:
+  - name: Question, idea, or "did anyone notice X"
+    url: https://github.com/zimm1/sc-agent-public/discussions
+    about: Discussions is the right place for anything that's not a bug or a concrete data correction. Roadmap voting, Q&A, show-and-tell — all there.
+  - name: Read the docs first
+    url: https://github.com/zimm1/sc-agent-public#getting-started
+    about: Common setup questions are usually answered in the README + getting-started guide.

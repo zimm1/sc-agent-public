@@ -1,0 +1,12 @@
+# CODEOWNERS for sc-agent-public.
+#
+# v0 — single maintainer reviews everything. Once a vision-defined reviewer
+# layer lands (community moderators, ML-based pre-review, vote-based merge,
+# whatever shape it ends up taking), update this file accordingly.
+#
+# Format: <pattern> <owner-list>
+# A PR touching a path matching the pattern requires review from at least one
+# listed owner before merge (when branch protection is set up via the GitHub
+# UI to require CODEOWNERS reviews).
+
+* @zimm1

@@ -1,0 +1,47 @@
+name: Verify model manifest
+
+# Runs on PRs that touch models/*. Validates the Ed25519 signature on
+# models/manifest.json (if committed in-repo for staging) against the
+# trust anchor checked into keys/v1.pub. Failures block PR merge.
+#
+# This workflow is scaffold — the verifier itself lives in the private
+# code repo as scripts/verify-models-manifest.ps1. The public repo can
+# either:
+#   (a) Vendor the script + dependencies (NSec.Cryptography .NET tool).
+#   (b) Use a published GitHub Action wrapper (TBD — depends on whether
+#       the maintainer wants to publish a reusable action).
+#
+# For v0, this workflow just structurally checks file presence + JSON
+# parseability. Cryptographic verification is added when the script is
+# either vendored or published as an action.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'models/**'
+  workflow_dispatch:
+
+jobs:
+  structural-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check manifest presence
+        run: |
+          if [ -f models/manifest.json ]; then
+            echo "manifest.json present"
+          fi
+          if [ -f models/manifest.json.minisig ]; then
+            echo "manifest.json.minisig present"
+          fi
+      - name: Validate manifest is parseable JSON
+        run: |
+          if [ -f models/manifest.json ]; then
+            python -c "import json,sys; json.load(open('models/manifest.json'))" && echo "JSON parseable"
+          fi
+      - name: TODO — cryptographic verify
+        run: |
+          echo "Ed25519 signature verification requires the verify script from the private code repo."
+          echo "Vendor it, or wait for the maintainer to publish it as a reusable Action."
+          echo "Until then, this workflow is structural only."

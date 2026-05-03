@@ -1,0 +1,77 @@
+name: 🐛 Bug report
+description: The app does something wrong, crashes, or doesn't behave as documented.
+title: "[bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Please fill in what you can — I'd rather see a partial report fast than a perfect one never.
+
+        Don't include personal info (your in-game name, save game data, screenshots showing your username). The app's "Settings → Report a problem" button prefills this form with anonymized info — use it if you can.
+
+  - type: input
+    id: app-version
+    attributes:
+      label: sc-agent version
+      description: From the `.msix` filename, or Settings → About inside the app.
+      placeholder: "v0.0.1"
+    validations:
+      required: true
+
+  - type: input
+    id: windows-version
+    attributes:
+      label: Windows version
+      description: Run `winver` and copy what's shown.
+      placeholder: "Windows 10 22H2 (build 19045)"
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU(s)
+      description: From Task Manager → Performance → GPU.
+      placeholder: "NVIDIA RTX 3080 + AMD Radeon iGPU"
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what actually happened.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: As much detail as you can. "Always happens" is fine if it does.
+      placeholder: |
+        1. Launch sc-agent
+        2. ...
+        3. ...
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error message (if any)
+      description: Copy + paste exactly as shown. Tray icon goes red on errors — hover for details.
+      render: text
+
+  - type: textarea
+    id: log-tail
+    attributes:
+      label: Log tail (optional)
+      description: |
+        Last ~50 lines of `%LOCALAPPDATA%\sc-agent\logs\agent-<today>.log`. The app's "Report a problem" button auto-anonymizes this — paste raw if you used that.
+      render: text
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I've removed any in-game usernames, real names, install paths, and IP addresses from the above.
+          required: true

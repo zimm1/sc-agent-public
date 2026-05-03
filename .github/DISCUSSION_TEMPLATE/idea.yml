@@ -1,0 +1,45 @@
+title: "[idea] "
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing an idea. Discussion → Ideas is the canonical roadmap input — popular ideas get bumped up the queue, controversial ones get debated openly, the maintainer's reasoning for accepting/rejecting is visible to everyone.
+
+        Before posting: scroll the existing Ideas to see if your idea already exists. If yes, upvote that one instead — concentrating votes works better than spreading them.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What's the idea?
+      description: One paragraph. Imagine you're pitching it to a friend who knows sc-agent but hasn't thought about this.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does this matter?
+      description: |
+        What problem does it solve? Whose problem? "I want this" is fair, but "users who do X currently can't Y, and Z would unblock them" is more persuasive.
+    validations:
+      required: true
+
+  - type: textarea
+    id: how
+    attributes:
+      label: Sketch of how it might work (optional)
+      description: |
+        Don't sweat the implementation details — but a rough sketch helps the maintainer estimate effort + spot conflicts with existing posture (especially: anything involving synthetic input or memory reads is a hard no, see EAC posture).
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Where would this live?
+      options:
+        - In the app itself (UI / overlay / data extraction)
+        - In this public repo (data formats, docs, releases)
+        - In a separate companion tool
+        - Not sure
+    validations:
+      required: true
