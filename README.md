@@ -27,9 +27,9 @@
 
 <br>
 
-<!-- Hero screenshot pending v0.0.1 ship + capture. Will be: docs/img/hero-bracket-overlay.png -->
+![Star Citizen cockpit with the in-game debug overlay (top-right) — the source sc-agent reads to compute saved POIs + bracket overlay](docs/img/hero-overlay.jpg)
 
-*The bracket follows the planet. Save anywhere with `F7`. Cycle targets with `F8`. That's it.*
+*The in-game debug overlay (top-right corner) is what sc-agent reads. Save anywhere with `F7`. Cycle targets with `F8`. The bracket follows the planet.*
 
 </div>
 
